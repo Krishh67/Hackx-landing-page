@@ -1,0 +1,346 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* F1 Racing theme - dark with racing red accents */
+:root {
+  --background: oklch(0.08 0.01 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.12 0.005 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.12 0.005 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.25 25);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.18 0.005 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.22 0.005 0);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.65 0.25 25);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0.01 0);
+  --input: oklch(0.18 0 0);
+  --ring: oklch(0.65 0.25 25);
+  --chart-1: oklch(0.65 0.25 25);
+  --chart-2: oklch(0.7 0.15 60);
+  --chart-3: oklch(0.5 0.1 200);
+  --chart-4: oklch(0.8 0.1 90);
+  --chart-5: oklch(0.6 0.2 350);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.65 0.25 25);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.18 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.25 0 0);
+  --sidebar-ring: oklch(0.65 0.25 25);
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+  --font-display: "Bebas Neue", "Rajdhani", "Oswald", system-ui, sans-serif;
+  --font-racing: "Bebas Neue", "Rajdhani", "Oswald", system-ui, sans-serif;
+  --font-f1: "Bebas Neue", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Mobile optimizations */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Better touch targets for mobile - but allow exceptions for icons */
+  button:not(.icon-only), a:not(.icon-only), input, select, textarea {
+    @apply min-h-[44px];
+  }
+  
+  /* Smooth scrolling on mobile */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better image handling on mobile */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Improve text readability on mobile */
+  @media (max-width: 640px) {
+    p, li, span {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+}
+
+/* Enhanced animations for racing theme */
+@keyframes racing-stripe {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes speed-lines {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes grid-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 50px;
+  }
+}
+
+@keyframes tire-mark {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes spark {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--spark-x, 50px)) translateY(var(--spark-y, -30px)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(239, 68, 68, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.5), 0 0 80px rgba(239, 68, 68, 0.2);
+  }
+}
+
+/* Add speed-line animation for video overlay */
+@keyframes speed-line {
+  0% {
+    transform: translateX(-100%) rotate(-5deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) rotate(-5deg);
+    opacity: 0;
+  }
+}
+
+.animate-racing-stripe {
+  animation: racing-stripe 3s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-speed-lines {
+  animation: speed-lines 2s linear infinite;
+}
+
+.animate-grid-scroll {
+  animation: grid-scroll 3s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-speed-line {
+  animation: speed-line 2s linear infinite;
+}
+
+.racing-gradient {
+  background: linear-gradient(135deg, oklch(0.65 0.25 25) 0%, oklch(0.45 0.2 25) 100%);
+}
+
+.carbon-fiber {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+}
+
+.checkered-flag {
+  background-image: repeating-conic-gradient(from 0deg, #fff 0deg 90deg, #000 90deg 180deg);
+  background-size: 20px 20px;
+}
+
+/* New racing track pattern */
+.racing-track-bg {
+  background-image: linear-gradient(
+      90deg,
+      transparent 49%,
+      rgba(239, 68, 68, 0.1) 49%,
+      rgba(239, 68, 68, 0.1) 51%,
+      transparent 51%
+    ), linear-gradient(0deg, transparent 98%, rgba(255, 255, 255, 0.05) 98%);
+  background-size: 100px 50px;
+}
+
+/* Perspective grid for depth */
+.perspective-grid {
+  background-image: linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+/* Speed lines overlay */
+.speed-lines-bg {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 100px,
+    rgba(239, 68, 68, 0.03) 100px,
+    rgba(239, 68, 68, 0.03) 102px
+  );
+}
+
+/* Gradient overlays */
+.racing-glow-top {
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(239, 68, 68, 0.15), transparent 70%);
+}
+
+.racing-glow-bottom {
+  background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(239, 68, 68, 0.1), transparent 70%);
+}
+
+.racing-glow-left {
+  background: radial-gradient(ellipse 50% 80% at 0% 50%, rgba(239, 68, 68, 0.08), transparent 70%);
+}
+
+.racing-glow-right {
+  background: radial-gradient(ellipse 50% 80% at 100% 50%, rgba(239, 68, 68, 0.08), transparent 70%);
+}
+
+/* Kerb stripes */
+.kerb-stripes {
+  background: repeating-linear-gradient(45deg, #ef4444, #ef4444 10px, #ffffff 10px, #ffffff 20px);
+}
+
+.kerb-stripes-alt {
+  background: repeating-linear-gradient(-45deg, #ef4444, #ef4444 10px, #1a1a1a 10px, #1a1a1a 20px);
+}
